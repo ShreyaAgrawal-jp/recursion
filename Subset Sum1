@@ -1,0 +1,20 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    static void func(int i,int sum,int[] num,ArrayList<Integer> arr){
+        if(i==num.length){
+            arr.add(sum);
+            return;
+        }
+        func(i+1,sum+num[i],num,arr);
+        func(i+1,sum,num,arr);
+    }
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        // Write your code here..
+        ArrayList<Integer> arr=new ArrayList<>();
+        func(0,0,num,arr);
+        Collections.sort(arr);
+        return arr;
+    }
+
+}
