@@ -1,0 +1,21 @@
+class Solution {
+    public void func(int index,int sum,int[] candidates,List<List<Integer>> ans,ArrayList<Integer> ds,int target){
+        if(index==candidates.length){
+            if(sum==target){
+            ans.add(new ArrayList<>(ds));
+            }
+            return;
+        }
+        if(sum<=target){
+            ds.add(candidates[index]);
+            func(index,sum+candidates[index],candidates,ans,ds,target);
+            ds.remove(ds.size()-1);
+        }
+        func(index+1,sum,candidates,ans,ds,target);
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans=new ArrayList<>();
+        func(0,0,candidates,ans,new ArrayList<>(),target);
+        return ans;
+    }
+}
