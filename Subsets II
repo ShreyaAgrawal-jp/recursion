@@ -1,0 +1,21 @@
+class Solution {
+    public void func(int index,ArrayList<Integer> ds, List<List<Integer>> ans,int[] nums){
+        ans.add(new ArrayList<>(ds));
+        for(int i=index;i<nums.length;i++){
+            if(i!=index && nums[i]==nums[i-1]){
+                continue;
+            }
+            else{
+                ds.add(nums[i]);
+                func(i+1,ds,ans,nums);
+                ds.remove(ds.size()-1);
+            }
+        }
+    }
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans=new ArrayList<>();
+        func(0,new ArrayList<>(),ans,nums);
+        return ans;
+    }
+}
