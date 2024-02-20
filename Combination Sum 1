@@ -6,7 +6,7 @@ class Solution {
             }
             return;
         }
-        if(sum<=target){
+        if(sum<target){
             ds.add(candidates[index]);
             func(index,sum+candidates[index],candidates,ans,ds,target);
             ds.remove(ds.size()-1);
