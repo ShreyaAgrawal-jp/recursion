@@ -1,0 +1,35 @@
+class Solution {
+    static void func(String s, int index, List<String> str, List<List<String>> ans){
+        if(index==s.length()){
+            ans.add(new ArrayList<>(str));
+        }
+        for(int i=index;i<s.length();i++){
+            String sub=s.substring(index,i+1);
+            if(pal(sub)){
+                str.add(sub);
+                func(s,i+1,str,ans);
+                str.remove(str.size()-1);
+            }
+        }
+    }
+    static boolean pal(String sub){
+        int start=0;
+        int end=sub.length()-1;
+        boolean flag=true;
+        while(start<end){
+            if(sub.charAt(start)!=sub.charAt(end)){
+                flag=false;
+                return flag;
+            }
+            start++;
+            end--;
+        }
+        return flag;
+    }
+    public static List<List<String>> partition(String s) {
+        List<List<String>> ans=new ArrayList<>();
+        List<String> str=new ArrayList<>();
+        func(s,0,str,ans);
+        return ans;
+    }
+}
